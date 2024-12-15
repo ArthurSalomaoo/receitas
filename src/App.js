@@ -18,6 +18,7 @@ const receitasMock = [
       "Coentro fresco (opcional)",
     ],
     imagem: "./imgs/guacamole.jpg",
+    video: "https://youtube.com/shorts/WiiFnrYFTzQ",
   },
   {
     id: 2,
@@ -35,7 +36,9 @@ const receitasMock = [
       "Abacaxi em pedaços",
       "Coentro fresco e cebola picada para decorar",
     ],
-    imagem: "./imgs/tacos_al_pastor.jpg",
+    imagem:
+      "https://blog.biglar.com.br/wp-content/uploads/2023/06/iStock-1371385807-1.jpg",
+    video: "https://youtube.com/shorts/WiiFnrYFTzQ",
   },
   {
     id: 3,
@@ -52,11 +55,15 @@ const receitasMock = [
       "1 xícara de creme espesso",
       "1/4 de xícara de queijo fresco",
     ],
-    imagem: "./imgs/chiles_en_nogada.jpg",
+    imagem:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjOPPUv_TjNYUh49ZzaOKjghnSU7r15PZIEw&s",
+    video: "https://youtube.com/shorts/WiiFnrYFTzQ",
   },
 ];
 
 function App() {
+  const [modalEditandoAberto, setModalEditandoAberto] = useState(false);
+  const [receitaSelecionada, setReceitaSelecionada] = useState(null); // Aqui está a primeira declaração
   const [receitas, setReceitas] = useState([]);
   const [filtro, setFiltro] = useState("");
   const [mostraFormulario, setMostraFormulario] = useState(false);
@@ -66,11 +73,39 @@ function App() {
     descricao: "",
     ingredientes: "",
     imagem: "",
+    video: "", // Adicionando o campo de vídeo
   });
+
+  const modalStyle = {
+    display: receitaSelecionada ? "block" : "none",
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: 1000,
+    backgroundColor: "#fff",
+    padding: "20px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+  };
+  const overlayStyle = {
+    display: receitaSelecionada ? "block" : "none",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: 999,
+  };
 
   useEffect(() => {
     const receitasSalvas = JSON.parse(localStorage.getItem("receitas")) || [];
-    const receitasIniciais = [...receitasMock, ...receitasSalvas];
+
+    const receitasUnicas = receitasMock.filter(
+      (mock) => !receitasSalvas.some((salva) => salva.id === mock.id)
+    );
+    const receitasIniciais = [...receitasSalvas, ...receitasUnicas];
     setReceitas(receitasIniciais);
   }, []);
 
@@ -95,7 +130,7 @@ function App() {
       id: receitaEditando ? receitaEditando.id : Date.now(),
       ingredientes: novaReceita.ingredientes.split("\n"),
     };
-
+  
     if (receitaEditando) {
       setReceitas(
         receitas.map((receita) =>
@@ -105,15 +140,28 @@ function App() {
     } else {
       setReceitas([...receitas, novaReceitaFormatada]);
     }
-
+  
     setNovaReceita({
       titulo: "",
       descricao: "",
       ingredientes: "",
       imagem: "",
+      video: "", // Limpando o campo de vídeo após adicionar
     });
     setReceitaEditando(null);
     setMostraFormulario(false);
+  };
+
+  const handleDeleteReceita = (id) => {
+    setReceitas(receitas.filter((receita) => receita.id !== id));
+  };
+
+  const handleAbrirModal = (receita) => {
+    setReceitaSelecionada(receita);
+  };
+
+  const handleFecharModal = () => {
+    setReceitaSelecionada(null);
   };
 
   const handleEditReceita = (receita) => {
@@ -123,14 +171,11 @@ function App() {
       descricao: receita.descricao,
       ingredientes: receita.ingredientes.join("\n"),
       imagem: receita.imagem,
+      video: receita.video, // Adicionando o campo de vídeo
     });
     setMostraFormulario(true);
+    setReceitaSelecionada(null);
   };
-
-  const handleDeleteReceita = (id) => {
-    setReceitas(receitas.filter((receita) => receita.id !== id));
-  };
-
   return (
     <div style={{ fontFamily: "Arial, sans-serif" }}>
       <Cabecalho />
@@ -145,53 +190,114 @@ function App() {
         />
 
         <div>
-          <h2 style={{textAlign:"center", marginBottom:"25px"}}>{filtro ? "Receitas Filtradas" : "Todas as Receitas"}</h2>
+          <h2 style={{ textAlign: "center", marginBottom: "25px" }}>
+            {filtro ? "Receitas Filtradas" : "Todas as Receitas"}
+          </h2>
           <div className="receitas">
             {filtrarReceitas().map((receita) => (
-              <div
-                key={receita.id}
-                style={{
-                  border: "1px solid #ccc",
-                  borderRadius: "5px",
-                  padding: "15px",
-                  marginBottom: "20px",
-                }}
-              >
-                <h2>{receita.titulo}</h2>
-                <img
-                  src={receita.imagem}
-                  alt={`Imagem da receita ${receita.titulo}`}
-                  style={{ maxWidth: "100%", height: "auto" }}
-                />
-                <p>{receita.descricao}</p>
-                <button
-                  onClick={() => handleEditReceita(receita)}
-                  style={{
-                    padding: "10px 15px",
-                    backgroundColor: "#4CAF50",
-                    color: "#fff",
-                    border: "none",
-                    cursor: "pointer",
-                    marginRight: "10px",
-                  }}
+              <div>
+                <div
+                  key={receita.id}
+                  onClick={() => handleAbrirModal(receita)}
+                  style={{ cursor: "pointer" }}
                 >
-                  Editar
-                </button>
-                <button
-                  onClick={() => handleDeleteReceita(receita.id)}
-                  style={{
-                    padding: "10px 15px",
-                    backgroundColor: "#f44336",
-                    color: "#fff",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Deletar
-                </button>
+                  <h2>{receita.titulo}</h2>
+                  <img
+                    src={receita.imagem}
+                    alt={`Imagem da receita ${receita.titulo}`}
+                    style={{
+                      maxWidth: "100%",
+                      height: "250px",
+                      marginTop: "15px",
+                    }}
+                  />
+                  <p style={{ marginTop: "15px" }}>{receita.descricao}</p>
+                  <h3 style={{ marginTop: "15px" }}>Ingredientes:</h3>
+                  <ul>
+                    {receita.ingredientes.map((ingrediente, index) => (
+                      <li key={index}>{ingrediente}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div style={{ marginTop: "15px" }}>
+                  <button
+                    onClick={() => handleEditReceita(receita)}
+                    style={{
+                      padding: "10px 15px",
+                      width: "80px",
+                      backgroundColor: "#4CAF50",
+                      color: "#fff",
+                      border: "none",
+                      cursor: "pointer",
+                      marginRight: "10px",
+                    }}
+                  >
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => handleDeleteReceita(receita.id)}
+                    style={{
+                      padding: "10px 15px",
+                      width: "80px",
+                      backgroundColor: "#f44336",
+                      color: "#fff",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Deletar
+                  </button>
+                </div>
               </div>
             ))}
           </div>
+        </div>
+
+        <div style={overlayStyle} onClick={handleFecharModal}></div>
+        <div style={modalStyle}>
+          {receitaSelecionada && (
+            <>
+              <h2>{receitaSelecionada.titulo}</h2>
+              <img
+                src={receitaSelecionada.imagem}
+                alt={`Imagem da receita ${receitaSelecionada.titulo}`}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  marginBottom: "15px",
+                  borderRadius: "8px",
+                }}
+              />
+              <p>{receitaSelecionada.descricao}</p>
+              <h3>Ingredientes:</h3>
+              <ul>
+                {receitaSelecionada.ingredientes.map((ingrediente, index) => (
+                  <li key={index}>{ingrediente}</li>
+                ))}
+              </ul>
+              <a
+                href={receitaSelecionada.video}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Assistir ao vídeo
+              </a>
+              <button
+                onClick={handleFecharModal}
+                style={{
+                  display:"block",
+                  marginTop: "20px",
+                  padding: "10px 15px",
+                  backgroundColor: "#f44336",
+                  color: "#fff",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                Fechar
+              </button>
+            </>
+          )}
         </div>
 
         {mostraFormulario && (
@@ -233,6 +339,15 @@ function App() {
               }
               style={{ padding: "10px", width: "100%", marginBottom: "10px" }}
             />
+            <input
+              type="text"
+              placeholder="URL do Vídeo"
+              value={novaReceita.video}
+              onChange={(e) =>
+                setNovaReceita({ ...novaReceita, video: e.target.value })
+              }
+              style={{ padding: "10px", width: "100%", marginBottom: "10px" }}
+            />
             <button
               onClick={handleAddReceita}
               style={{
@@ -244,7 +359,7 @@ function App() {
               }}
             >
               {receitaEditando ? "Salvar Alterações" : "Adicionar Receita"}
-            </button>{" "}
+            </button>
           </div>
         )}
       </div>

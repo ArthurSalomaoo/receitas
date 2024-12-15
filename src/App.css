@@ -12,8 +12,27 @@
   justify-content: center;
 }
 
-.receitas > div {
+.receitas > div{
   width: 400px;
+  max-height: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+.receitas > div > div > p {
+  text-align: left;
+}
+
+.receitas > div > div > ul {
+  text-align: left;
+  padding-left: 21px;
 }
 
 .formulario {
