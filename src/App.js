@@ -7,21 +7,21 @@ const receitasMock = [
   {
     id: 1,
     titulo: "Guacamole Tradicional",
-    descricao: "Uma receita simples e deliciosa de guacamole.",
+    descricao: "Una receta simple y deliciosa de guacamole.",
     ingredientes: [
-      "2 abacates maduros ou 1 abacate grande",
-      "1 tomate pequeno (sem sementes), picado em cubos",
-      "1/2 cebola roxa, bem picada",
-      "1 dente de alho, amassado (opcional)",
-      "Suco de 1 limão",
-      "Sal a gosto",
-      "Coentro fresco (opcional)",
+      "2 aguacates maduros o 1 aguacate grande",
+      "1 tomate pequeño (sin semillas), picado en cubos",
+      "1/2 cebolla morada, bien picada",
+      "1 diente de ajo, triturado (opcional)",
+      "Jugo de 1 limón",
+      "Sal al gusto",
+      "Cilantro fresco (opcional)",
     ],
     modoDePreparo: [
-      "Amasse os abacates até formar um purê.",
-      "Adicione o tomate, cebola e coentro e misture.",
-      "Tempere com sal e suco de limão a gosto.",
-      "Sirva imediatamente com tortilhas ou como acompanhamento.",
+      "Tritura los aguacates hasta formar un puré.",
+      "Añade el tomate, la cebolla y el cilantro, y mezcla.",
+      "Condimenta con sal y jugo de limón al gusto.",
+      "Sirve inmediatamente con tortillas o como acompañamiento.",
     ],
     imagem: "./imgs/guacamole.jpg",
     video: "https://youtube.com/shorts/WiiFnrYFTzQ",
@@ -30,22 +30,22 @@ const receitasMock = [
     id: 2,
     titulo: "Tacos al Pastor",
     descricao:
-      "Um prato icônico do México feito com carne de porco marinada e abacaxi.",
+      "Un plato icónico de México hecho con carne de cerdo marinada y piña.",
     ingredientes: [
-      "500g de carne de porco (preferencialmente lombo)",
+      "500g de carne de cerdo (preferentemente lomo)",
       "2 chiles guajillo secos",
       "1 chile ancho seco",
-      "2 dentes de alho",
-      "1/4 de xícara de vinagre de maçã",
-      "1/2 xícara de suco de abacaxi",
-      "Tortilhas de milho",
-      "Abacaxi em pedaços",
-      "Coentro fresco e cebola picada para decorar",
+      "2 dientes de ajo",
+      "1/4 de taza de vinagre de manzana",
+      "1/2 taza de jugo de piña",
+      "Tortillas de maíz",
+      "Piña en trozos",
+      "Cilantro fresco y cebolla picada para decorar",
     ],
     modoDePreparo: [
-      "Marinar a carne de porco com os chiles, alho, vinagre e suco de abacaxi.",
-      "Grelhe a carne até que esteja bem dourada e corte em pedaços pequenos.",
-      "Monte os tacos com a carne, abacaxi e coentro.",
+      "Marinar la carne de cerdo con los chiles, ajo, vinagre y jugo de piña.",
+      "Asa la carne hasta que esté bien dorada y córtala en trozos pequeños.",
+      "Arma los tacos con la carne, la piña y el cilantro.",
     ],
     imagem:
       "https://blog.biglar.com.br/wp-content/uploads/2023/06/iStock-1371385807-1.jpg",
@@ -54,28 +54,29 @@ const receitasMock = [
   {
     id: 3,
     titulo: "Chiles en Nogada",
-    descricao: "Um prato tradicional que combina sabores doces e salgados.",
+    descricao: "Un plato tradicional que combina sabores dulces y salados.",
     ingredientes: [
-      "4 pimentões poblanos grandes",
-      "300g de carne moída (metade de porco, metade de boi)",
-      "1/2 xícara de passas",
-      "1/2 xícara de amêndoas picadas",
-      "2 pêssegos picados",
-      "1 romã (sementes)",
-      "1 xícara de noz moída",
-      "1 xícara de creme espesso",
-      "1/4 de xícara de queijo fresco",
+      "4 pimientos poblanos grandes",
+      "300g de carne molida (mitad cerdo, mitad res)",
+      "1/2 taza de pasas",
+      "1/2 taza de almendras picadas",
+      "2 duraznos picados",
+      "1 granada (semillas)",
+      "1 taza de nuez molida",
+      "1 taza de crema espesa",
+      "1/4 de taza de queso fresco",
     ],
     modoDePreparo: [
-      "Assar os pimentões poblanos e retirá-los da pele.",
-      "Prepare o recheio com carne moída, passas, amêndoas e pêssegos.",
-      "Recheie os pimentões e cubra com o molho de nogada (creme com nozes).",
+      "Asar los pimientos poblanos y retirarles la piel.",
+      "Prepara el relleno con carne molida, pasas, almendras y duraznos.",
+      "Rellena los pimientos y cúbrelos con la salsa de nogada (crema con nueces).",
     ],
     imagem:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjOPPUv_TjNYUh49ZzaOKjghnSU7r15PZIEw&s",
     video: "https://youtube.com/shorts/WiiFnrYFTzQ",
   },
 ];
+
 
 function App() {
   const [modalEditandoAberto, setModalEditandoAberto] = useState(false);
@@ -142,12 +143,15 @@ function App() {
   };
 
   const handleAddReceita = () => {
-
     const novaReceitaFormatada = {
       ...novaReceita,
       id: receitaEditando ? receitaEditando.id : Date.now(),
-      ingredientes: novaReceita.ingredientes ? novaReceita.ingredientes.split("\n") : [],
-      modoDePreparo: novaReceita.modoDePreparo ? novaReceita.modoDePreparo.split("\n") : [],
+      ingredientes: novaReceita.ingredientes
+        ? novaReceita.ingredientes.split("\n")
+        : [],
+      modoDePreparo: novaReceita.modoDePreparo
+        ? novaReceita.modoDePreparo.split("\n")
+        : [],
     };
 
     if (receitaEditando) {
@@ -197,7 +201,7 @@ function App() {
     setMostraFormulario(true);
     setReceitaSelecionada(null);
   };
-  
+
   return (
     <div style={{ fontFamily: "Arial, sans-serif" }}>
       <Cabecalho />
@@ -210,10 +214,9 @@ function App() {
           setMostraFormulario={setMostraFormulario}
           setReceitaEditando={setReceitaEditando}
         />
-
         <div>
           <h2 style={{ textAlign: "center", margin: "25px 0" }}>
-            {filtro ? "Receitas Filtradas" : "Todas as Receitas"}
+            {filtro ? "Recetas Filtradas" : "Todas las Recetas"}
           </h2>
           <div className="receitas">
             {filtrarReceitas().map((receita) => (
@@ -234,7 +237,7 @@ function App() {
                     }}
                   />
                   <p style={{ marginTop: "15px" }}>{receita.descricao}</p>
-                  <h3 style={{ marginTop: "15px" }}>Ingredientes:</h3>
+                  <h3 style={{ marginTop: "15px", marginBottom:"5px" }}>Ingredientes:</h3>
                   <ul>
                     {receita.ingredientes.map((ingrediente, index) => (
                       <li key={index}>{ingrediente}</li>
@@ -267,7 +270,7 @@ function App() {
                       cursor: "pointer",
                     }}
                   >
-                    Deletar
+                    Eliminar
                   </button>
                 </div>
               </div>
@@ -291,7 +294,7 @@ function App() {
                   <li key={index}>{ingrediente}</li>
                 ))}
               </ul>
-              <h3 style={{ padding: "10px 0 5px 0" }}>Modo de Preparo:</h3>
+              <h3 style={{ padding: "10px 0 5px 0" }}>Modo de Preparación:</h3>
               <ul>
                 {receitaSelecionada.modoDePreparo.map((passo, index) => (
                   <li key={index}>{passo}</li>
@@ -304,7 +307,7 @@ function App() {
                 rel="noopener noreferrer"
                 style={{ paddingTop: "5px" }}
               >
-                Assistir ao vídeo
+                Ver el video
               </a>
               <button
                 onClick={handleFecharModal}
@@ -318,7 +321,7 @@ function App() {
                   cursor: "pointer",
                 }}
               >
-                Fechar
+                Cerrar
               </button>
             </div>
           )}
@@ -327,11 +330,11 @@ function App() {
         {mostraFormulario && (
           <div className="formulario">
             <h3>
-              {receitaEditando ? "Editar Receita" : "Adicionar Nova Receita"}
+              {receitaEditando ? "Editar receta" : "Añadir receta"}
             </h3>
             <input
               type="text"
-              placeholder="Título"
+              placeholder="Título de la receta"
               value={novaReceita.titulo}
               onChange={(e) =>
                 setNovaReceita({ ...novaReceita, titulo: e.target.value })
@@ -339,7 +342,7 @@ function App() {
               style={{ padding: "10px", width: "100%", marginBottom: "10px" }}
             />
             <textarea
-              placeholder="Descrição"
+              placeholder="Descripción de la receta"
               value={novaReceita.descricao}
               onChange={(e) =>
                 setNovaReceita({ ...novaReceita, descricao: e.target.value })
@@ -347,7 +350,7 @@ function App() {
               style={{ padding: "10px", width: "100%", marginBottom: "10px" }}
             />
             <textarea
-              placeholder="Ingredientes (separados por linhas)"
+              placeholder="Ingredientes (uno por línea)"
               value={novaReceita.ingredientes}
               onChange={(e) =>
                 setNovaReceita({ ...novaReceita, ingredientes: e.target.value })
@@ -355,17 +358,20 @@ function App() {
               style={{ padding: "10px", width: "100%", marginBottom: "10px" }}
             />
             <textarea
-              placeholder="Modo de Preparo (separados por nova linha)"
+              placeholder="Modo de preparación (uno por línea)"
               value={novaReceita.modoDePreparo}
               onChange={(e) =>
-                setNovaReceita({ ...novaReceita, modoDePreparo: e.target.value })
+                setNovaReceita({
+                  ...novaReceita,
+                  modoDePreparo: e.target.value,
+                })
               }
               style={{ padding: "10px", width: "100%", marginBottom: "10px" }}
             />
 
             <input
               type="text"
-              placeholder="URL da Imagem"
+              placeholder="URL de la imagen (opcional)"
               value={novaReceita.imagem}
               onChange={(e) =>
                 setNovaReceita({ ...novaReceita, imagem: e.target.value })
@@ -374,7 +380,7 @@ function App() {
             />
             <input
               type="text"
-              placeholder="URL do Vídeo"
+              placeholder="URL del video (opcional)"
               value={novaReceita.video}
               onChange={(e) =>
                 setNovaReceita({ ...novaReceita, video: e.target.value })
@@ -391,7 +397,7 @@ function App() {
                 cursor: "pointer",
               }}
             >
-              {receitaEditando ? "Salvar Alterações" : "Adicionar Receita"}
+              {receitaEditando ? "Guardar Cambios" : "Añadir receta"}
             </button>
           </div>
         )}
@@ -399,5 +405,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

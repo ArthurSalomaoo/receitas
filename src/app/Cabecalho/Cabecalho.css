@@ -31,7 +31,6 @@
   color: #333; /* Cor de texto mais escura para contraste */
   padding: 0 20px;
   font-weight: bold;
-  text-transform: uppercase; /* Texto em maiúsculas */
   letter-spacing: 2px; /* Espaçamento entre letras */
 }
 
@@ -39,7 +38,7 @@
   .cabecalho {
     justify-content: center; /* Centraliza os itens quando a tela for menor */
     text-align: center;
-    padding: 10px;
+    padding: 5px;
   }
 
   .cabecalho h1 {
@@ -48,10 +47,10 @@
   }
 
   .cabecalho img:first-child {
-    max-width: 60px; /* Ajuste para telas menores */
+    max-width: 55px; /* Ajuste para telas menores */
   }
 
   .cabecalho img:last-child {
-    width: 120px; /* Ajuste na largura da segunda imagem */
+    width: 115px; /* Ajuste na largura da segunda imagem */
   }
 }

@@ -5,7 +5,7 @@
       <div className="barraDeAcoes">
         <input
           type="text"
-          placeholder="Buscar receita..."
+          placeholder="Buscar receta..."
           value={filtro}
           onChange={(e) => setFiltro(e.target.value)}
           style={{ padding: "10px", width: "300px" }}
@@ -44,7 +44,7 @@
             marginLeft: "10px",
           }}
         >
-          Adicionar Receita
+          Añadir receta
         </button>
       </div>
     );
