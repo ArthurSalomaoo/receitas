@@ -17,6 +17,12 @@ const receitasMock = [
       "Sal a gosto",
       "Coentro fresco (opcional)",
     ],
+    modoDePreparo: [
+      "Amasse os abacates até formar um purê.",
+      "Adicione o tomate, cebola e coentro e misture.",
+      "Tempere com sal e suco de limão a gosto.",
+      "Sirva imediatamente com tortilhas ou como acompanhamento.",
+    ],
     imagem: "./imgs/guacamole.jpg",
     video: "https://youtube.com/shorts/WiiFnrYFTzQ",
   },
@@ -35,6 +41,11 @@ const receitasMock = [
       "Tortilhas de milho",
       "Abacaxi em pedaços",
       "Coentro fresco e cebola picada para decorar",
+    ],
+    modoDePreparo: [
+      "Marinar a carne de porco com os chiles, alho, vinagre e suco de abacaxi.",
+      "Grelhe a carne até que esteja bem dourada e corte em pedaços pequenos.",
+      "Monte os tacos com a carne, abacaxi e coentro.",
     ],
     imagem:
       "https://blog.biglar.com.br/wp-content/uploads/2023/06/iStock-1371385807-1.jpg",
@@ -55,6 +66,11 @@ const receitasMock = [
       "1 xícara de creme espesso",
       "1/4 de xícara de queijo fresco",
     ],
+    modoDePreparo: [
+      "Assar os pimentões poblanos e retirá-los da pele.",
+      "Prepare o recheio com carne moída, passas, amêndoas e pêssegos.",
+      "Recheie os pimentões e cubra com o molho de nogada (creme com nozes).",
+    ],
     imagem:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjOPPUv_TjNYUh49ZzaOKjghnSU7r15PZIEw&s",
     video: "https://youtube.com/shorts/WiiFnrYFTzQ",
@@ -73,7 +89,8 @@ function App() {
     descricao: "",
     ingredientes: "",
     imagem: "",
-    video: "", // Adicionando o campo de vídeo
+    video: "",
+    modoDePreparo: "", // Adicionando campo "modoDePreparo"
   });
 
   const modalStyle = {
@@ -125,12 +142,14 @@ function App() {
   };
 
   const handleAddReceita = () => {
+
     const novaReceitaFormatada = {
       ...novaReceita,
       id: receitaEditando ? receitaEditando.id : Date.now(),
-      ingredientes: novaReceita.ingredientes.split("\n"),
+      ingredientes: novaReceita.ingredientes ? novaReceita.ingredientes.split("\n") : [],
+      modoDePreparo: novaReceita.modoDePreparo ? novaReceita.modoDePreparo.split("\n") : [],
     };
-  
+
     if (receitaEditando) {
       setReceitas(
         receitas.map((receita) =>
@@ -140,13 +159,14 @@ function App() {
     } else {
       setReceitas([...receitas, novaReceitaFormatada]);
     }
-  
+
     setNovaReceita({
       titulo: "",
       descricao: "",
       ingredientes: "",
       imagem: "",
-      video: "", // Limpando o campo de vídeo após adicionar
+      video: "",
+      modoDePreparo: "",
     });
     setReceitaEditando(null);
     setMostraFormulario(false);
@@ -172,10 +192,12 @@ function App() {
       ingredientes: receita.ingredientes.join("\n"),
       imagem: receita.imagem,
       video: receita.video, // Adicionando o campo de vídeo
+      modoDePreparo: receita.modoDePreparo.join("\n"),
     });
     setMostraFormulario(true);
     setReceitaSelecionada(null);
   };
+  
   return (
     <div style={{ fontFamily: "Arial, sans-serif" }}>
       <Cabecalho />
@@ -254,7 +276,7 @@ function App() {
         </div>
 
         <div style={overlayStyle} onClick={handleFecharModal}></div>
-        <div className={receitaSelecionada ? "receitaSelecionada":"none"}>
+        <div className={receitaSelecionada ? "receitaSelecionada" : "none"}>
           {receitaSelecionada && (
             <div>
               <h2>{receitaSelecionada.titulo}</h2>
@@ -263,23 +285,31 @@ function App() {
                 alt={`Imagem da receita ${receitaSelecionada.titulo}`}
               />
               <p>{receitaSelecionada.descricao}</p>
-              <h3>Ingredientes:</h3>
+              <h3 style={{ padding: "10px 0 5px 0" }}>Ingredientes:</h3>
               <ul>
                 {receitaSelecionada.ingredientes.map((ingrediente, index) => (
                   <li key={index}>{ingrediente}</li>
                 ))}
               </ul>
+              <h3 style={{ padding: "10px 0 5px 0" }}>Modo de Preparo:</h3>
+              <ul>
+                {receitaSelecionada.modoDePreparo.map((passo, index) => (
+                  <li key={index}>{passo}</li>
+                ))}
+              </ul>
+
               <a
                 href={receitaSelecionada.video}
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{ paddingTop: "5px" }}
               >
                 Assistir ao vídeo
               </a>
               <button
                 onClick={handleFecharModal}
                 style={{
-                  display:"block",
+                  display: "block",
                   marginTop: "20px",
                   padding: "10px 15px",
                   backgroundColor: "#f44336",
@@ -324,6 +354,15 @@ function App() {
               }
               style={{ padding: "10px", width: "100%", marginBottom: "10px" }}
             />
+            <textarea
+              placeholder="Modo de Preparo (separados por nova linha)"
+              value={novaReceita.modoDePreparo}
+              onChange={(e) =>
+                setNovaReceita({ ...novaReceita, modoDePreparo: e.target.value })
+              }
+              style={{ padding: "10px", width: "100%", marginBottom: "10px" }}
+            />
+
             <input
               type="text"
               placeholder="URL da Imagem"

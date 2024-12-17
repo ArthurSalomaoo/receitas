@@ -4,34 +4,52 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9fafb; /* Fundo suave */
+  color: #333;
+}
+
 .receitas {
   display: flex;
   gap: 20px;
   margin: auto;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 40px 20px; /* Adicionando um pouco de espaçamento ao redor */
 }
 
 .receitas > div {
-  width: 400px;
+  width: 350px;
   max-height: auto;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: none;
+  border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
   text-align: justify;
   display: flex;
   flex-direction: column;
   text-align: center;
+  background-color: #fff; /* Cor de fundo suave */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: all 0.3s ease;
+}
+
+.receitas > div:hover {
+  transform: translateY(-10px); /* Movimenta a div para cima */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
 }
 
 .receitas > div > div > p {
   text-align: left;
+  color: #555; /* Cor de texto suave */
+  line-height: 1.6;
 }
 
 .receitas > div > div > ul {
   text-align: left;
   padding-left: 21px;
+  color: #555; /* Cor de texto suave */
 }
 
 .formulario {
@@ -40,32 +58,83 @@
   align-items: center;
   flex-direction: column;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin: auto;
-  background-color: rgb(251, 251, 251);
-  padding: 20px;
-  border-radius: 10px;
+  background-color: #ffffff; /* Fundo neutro */
+  padding: 30px 20px; /* Maior espaçamento interno */
+  border-radius: 12px; /* Bordas arredondadas */
   width: 80%;
   max-width: 600px;
-  height: 450px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.formulario h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.formulario label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.formulario input, .formulario textarea, .formulario select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+}
+
+.formulario input:focus, .formulario textarea:focus, .formulario select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.formulario button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formulario button:hover {
+  background-color: #0056b3;
+}
+
+.formulario .error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 .receitaSelecionada {
   width: 600px;
-  height: auto;
+  height: 650px;
+  overflow-y: auto;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,76 +144,74 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 400px;
+  width: 380px;
 }
 
 .receitaSelecionada > div > img {
-  margin-top: 10px;
-  width: 300px;
+  margin-top: 15px;
+  width: 250px;
   height: auto;
-  margin-bottom: 15px;
-  border-radius: 8px;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .receitaSelecionada > div > p {
   text-align: justify;
+  color: #555;
   width: 380px;
 }
 
 .receitaSelecionada > div > ul {
   padding-left: 20px;
+  color: #555;
 }
 
 .receitaSelecionada > div > a {
   width: 380px;
   padding-left: 20px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.receitaSelecionada > div > a:hover {
+  color: #0056b3;
 }
 
 @media (max-width: 709px) {
   .receitaSelecionada {
-    width: 350px;
-    height: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background-color: #fff;
+    width: 90%;
+    height: 600px;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
   }
 
   .receitaSelecionada > div {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 350px;
   }
 
   .receitaSelecionada > div > img {
-    margin-top: 10px;
     width: 250px;
-    height: auto;
-    margin-bottom: 15px;
-    border-radius: 8px;
   }
 
   .receitaSelecionada > div > p {
-    text-align: justify;
-    width: 300px;
+    width: 90%;
   }
 
   .receitaSelecionada > div > ul {
-    width: 300px;
-    padding-left: 20px;
+    width: 90%;
   }
 
   .receitaSelecionada > div > a {
-    width: 300px;
-    padding-left: 20px;
+    width: 90%;
   }
 }

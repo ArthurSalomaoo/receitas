@@ -1,29 +1,104 @@
+/* Barra de ações */
 .barraDeAcoes {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap; /* Permite que os elementos quebrem linha */
-    justify-content: center;
-    align-items: center;
-    gap: 10px; /* Espaçamento entre os elementos */
+  width: 850px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap; /* Permite que os elementos quebrem linha */
+  justify-content: center; /* Centraliza os elementos */
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background-color: #f4f4f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Campo de busca e botões */
+.barraDeAcoes input {
+  width: 100%;
+  max-width: 350px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.barraDeAcoes input:focus {
+  border-color: #4CAF50;
+}
+
+.barraDeAcoes button {
+  width: 100%;
+  max-width: 180px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.barraDeAcoes button:hover {
+  transform: translateY(-5px);
+}
+
+.barraDeAcoes button:active {
+  transform: translateY(2px);
+}
+
+.barraDeAcoes button:nth-child(1) {
+  background-color: #4CAF50;
+}
+
+.barraDeAcoes button:nth-child(1):hover {
+  background-color: #45a049;
+}
+
+.barraDeAcoes button:nth-child(2) {
+  background-color: #008CBA;
+}
+
+.barraDeAcoes button:nth-child(2):hover {
+  background-color: #007bb5;
+}
+
+/* Centralização da barra de ações em telas grandes */
+@media (min-width: 769px) {
+  .barraDeAcoes {
+    flex-wrap: nowrap; /* Remove a quebra de linha */
+    justify-content: center; /* Centraliza a barra de ações */
   }
-  
-  .barraDeAcoes input {
-    width: 100%; /* Ocupa a largura total em telas menores */
-    max-width: 300px; /* Tamanho máximo em telas maiores */
-  }
-  
+
   .barraDeAcoes button {
-    width: 100%; /* Botões ocupam a largura total em telas menores */
-    max-width: 150px;
+    width: auto;
   }
   
-  @media (min-width: 769px) {
-    .barraDeAcoes {
-      flex-wrap: nowrap; /* Remove a quebra de linha em telas maiores */
-    }
-  
-    .barraDeAcoes button {
-      width: auto; /* Volta ao tamanho automático em telas maiores */
-    }
+  /* Estilo para a div atrás (o conteúdo) */
+  .conteudo {
+    width: 80%; /* Aumenta a largura da div quando a tela for maior */
+    max-width: 1000px; /* Tamanho máximo */
+    margin: 0 auto; /* Centraliza a div */
+    background-color: #fff; /* Cor de fundo para o conteúdo */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Estilos para telas pequenas */
+@media (max-width: 768px) {
+  .barraDeAcoes {
+    width: 100%;
+    flex-wrap: wrap; /* Permite quebra de linha */
+    justify-content: center; /* Centraliza os elementos */
   }
   
+  .conteudo {
+    width: 100%; /* Aumenta a largura da div para ocupar toda a tela em dispositivos móveis */
+    margin: 0;
+  }
+}
