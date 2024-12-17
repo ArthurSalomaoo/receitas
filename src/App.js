@@ -190,7 +190,7 @@ function App() {
         />
 
         <div>
-          <h2 style={{ textAlign: "center", marginBottom: "25px" }}>
+          <h2 style={{ textAlign: "center", margin: "25px 0" }}>
             {filtro ? "Receitas Filtradas" : "Todas as Receitas"}
           </h2>
           <div className="receitas">
@@ -254,19 +254,13 @@ function App() {
         </div>
 
         <div style={overlayStyle} onClick={handleFecharModal}></div>
-        <div style={modalStyle}>
+        <div className={receitaSelecionada ? "receitaSelecionada":"none"}>
           {receitaSelecionada && (
-            <>
+            <div>
               <h2>{receitaSelecionada.titulo}</h2>
               <img
                 src={receitaSelecionada.imagem}
                 alt={`Imagem da receita ${receitaSelecionada.titulo}`}
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                  marginBottom: "15px",
-                  borderRadius: "8px",
-                }}
               />
               <p>{receitaSelecionada.descricao}</p>
               <h3>Ingredientes:</h3>
@@ -296,7 +290,7 @@ function App() {
               >
                 Fechar
               </button>
-            </>
+            </div>
           )}
         </div>
 

@@ -1,7 +1,29 @@
-.barraDeAcoes{
+.barraDeAcoes {
     width: 100%;
     display: flex;
+    flex-wrap: wrap; /* Permite que os elementos quebrem linha */
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
-}
+    gap: 10px; /* Espaçamento entre os elementos */
+  }
+  
+  .barraDeAcoes input {
+    width: 100%; /* Ocupa a largura total em telas menores */
+    max-width: 300px; /* Tamanho máximo em telas maiores */
+  }
+  
+  .barraDeAcoes button {
+    width: 100%; /* Botões ocupam a largura total em telas menores */
+    max-width: 150px;
+  }
+  
+  @media (min-width: 769px) {
+    .barraDeAcoes {
+      flex-wrap: nowrap; /* Remove a quebra de linha em telas maiores */
+    }
+  
+    .barraDeAcoes button {
+      width: auto; /* Volta ao tamanho automático em telas maiores */
+    }
+  }
+  
