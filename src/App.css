@@ -16,40 +16,31 @@ body {
   margin: auto;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 40px 20px; /* Adicionando um pouco de espaçamento ao redor */
+  padding: 24px 20px;
 }
 
 .receitas > div {
   width: 350px;
-  max-height: auto;
-  border: none;
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
-  text-align: justify;
-  display: flex;
-  flex-direction: column;
   text-align: center;
-  background-color: #fff; /* Cor de fundo suave */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 .receitas > div:hover {
-  transform: translateY(-10px); /* Movimenta a div para cima */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.receitas > div > div > p {
-  text-align: left;
-  color: #555; /* Cor de texto suave */
-  line-height: 1.6;
-}
-
+.receitas > div > div > p,
 .receitas > div > div > ul {
   text-align: left;
+  color: #555;
+  line-height: 1.6;
   padding-left: 21px;
-  color: #555; /* Cor de texto suave */
 }
 
 .formulario {
@@ -61,14 +52,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin: auto;
-  background-color: #ffffff; /* Fundo neutro */
-  padding: 30px 20px; /* Maior espaçamento interno */
-  border-radius: 12px; /* Bordas arredondadas */
+  background-color: #ffffff;
+  padding: 30px 20px;
+  border-radius: 12px;
   width: 80%;
   max-width: 600px;
-  height: auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .formulario h2 {
@@ -84,7 +73,9 @@ body {
   color: #666;
 }
 
-.formulario input, .formulario textarea, .formulario select {
+.formulario input,
+.formulario textarea,
+.formulario select {
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
@@ -93,10 +84,11 @@ body {
   font-size: 16px;
   color: #333;
   background-color: #fafafa;
-  transition: border-color 0.3s ease;
 }
 
-.formulario input:focus, .formulario textarea:focus, .formulario select:focus {
+.formulario input:focus,
+.formulario textarea:focus,
+.formulario select:focus {
   border-color: #007bff;
   outline: none;
 }
@@ -109,17 +101,10 @@ body {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .formulario button:hover {
   background-color: #0056b3;
-}
-
-.formulario .error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
 }
 
 .receitaSelecionada {
@@ -148,31 +133,22 @@ body {
 }
 
 .receitaSelecionada > div > img {
-  margin-top: 15px;
-  width: 250px;
-  height: auto;
+  width: 300px;
   margin-bottom: 20px;
   border-radius: 10px;
 }
 
-.receitaSelecionada > div > p {
-  text-align: justify;
-  color: #555;
+.receitaSelecionada > div > p,
+.receitaSelecionada > div > ul,
+.receitaSelecionada > div > a {
   width: 380px;
-}
-
-.receitaSelecionada > div > ul {
-  padding-left: 20px;
   color: #555;
 }
 
 .receitaSelecionada > div > a {
-  width: 380px;
-  padding-left: 20px;
   text-decoration: none;
   color: #007bff;
   font-weight: bold;
-  transition: color 0.3s ease;
 }
 
 .receitaSelecionada > div > a:hover {
@@ -184,34 +160,65 @@ body {
     width: 90%;
     height: 600px;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
   }
 
   .receitaSelecionada > div {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .receitaSelecionada > div > img {
     width: 250px;
   }
 
-  .receitaSelecionada > div > p {
-    width: 90%;
-  }
-
-  .receitaSelecionada > div > ul {
-    width: 90%;
-  }
-
+  .receitaSelecionada > div > p,
+  .receitaSelecionada > div > ul,
   .receitaSelecionada > div > a {
     width: 90%;
   }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.botao-editar {
+  padding: 10px 15px;
+  width: 80px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.botao-deletar {
+  padding: 10px 15px;
+  width: 80px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.receita-imagem {
+  max-width: 100%;
+  height: 250px;
+}
+
+.titulo-receita {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.ingredientes {
+  margin-top: 15px;
+}
+
+.ingrediente-item {
+  color: #555;
 }
