@@ -165,15 +165,11 @@ function App() {
                   <button
                     onClick={() => handleEditReceita(receita)}
                     className="botao-editar"
-                  >
-                    Editar
-                  </button>
+                  >Editar</button>
                   <button
                     onClick={() => handleDeleteReceita(receita.id)}
                     className="botao-deletar"
-                  >
-                    Eliminar
-                  </button>
+                  >Eliminar</button>
                 </div>
               </div>
             ))}
@@ -187,7 +183,7 @@ function App() {
         <div className={receitaSelecionada ? "receitaSelecionada" : "none"}>
           {receitaSelecionada && (
             <div>
-              <h2>{receitaSelecionada.titulo}</h2>
+              <h2 style={{marginBottom:"15px"}}>{receitaSelecionada.titulo}</h2>
               <img
                 src={receitaSelecionada.imagem}
                 alt={`Imagem da receita ${receitaSelecionada.titulo}`}

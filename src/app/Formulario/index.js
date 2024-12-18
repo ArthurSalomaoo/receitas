@@ -11,7 +11,7 @@ function Formulario({
 }) {
   return (
     <div className="formulario">
-      <h3>{receitaEditando ? "Editar receita" : "Adicionar receita"}</h3>
+      <h3 style={{marginBottom:"10px"}}>{receitaEditando ? "Editar receita" : "Adicionar receita"}</h3>
       <input
         type="text"
         placeholder="Título da receita"

@@ -16,13 +16,13 @@
 }
 
 .cabecalho img:first-child {
-  max-width: 75px; /* Ajuste na largura */
+  max-width: 65px; /* Ajuste na largura */
   height: auto;
   object-fit: contain;
 }
 
 .cabecalho img:last-child {
-  width: 160px; /* Ajuste na largura da segunda imagem */
+  width: 150px; /* Ajuste na largura da segunda imagem */
   height: auto;
 }
 

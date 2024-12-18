@@ -109,8 +109,8 @@ function BarraDeAcoes({
               color: idiomaSelecionado === "portugues" ? "#fff" : "#333",
               padding: "10px 15px",
               border: "none",
+              margin: "15px 20px 15px 0",
               cursor: "pointer",
-              marginLeft: "10px",
               borderRadius: "5px", // Bordes redondeados para suavizar el aspecto
             }}
           >
@@ -125,7 +125,7 @@ function BarraDeAcoes({
               padding: "10px 15px",
               border: "none",
               cursor: "pointer",
-              marginLeft: "10px",
+              margin: "15px 20px 15px 0",
               borderRadius: "5px", // Bordes redondeados para suavizar el aspecto
             }}
           >
@@ -139,7 +139,7 @@ function BarraDeAcoes({
               color: "#fff", // Color del texto blanco
               border: "none",
               cursor: "pointer",
-              marginLeft: "10px",
+              margin: "15px 0 15px 0",
               borderRadius: "5px", // Bordes redondeados para suavizar el aspecto
               fontWeight: "bold", // Hacer que el texto sea más destacado
               transition: "background-color 0.3s ease", // Transición suave de color al pasar el ratón
@@ -158,6 +158,7 @@ function BarraDeAcoes({
                     href="/arquivos/guacamole%20português.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
+                    style={{display:"block",margin:"0 0 17px 0"}}
                   >
                     Enlace de la receta
                   </a>
@@ -170,6 +171,8 @@ function BarraDeAcoes({
                     href="/arquivos/guacamole%20espanhol.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
+                    style={{display:"block",margin:"0 0 17px 0"}}
+
                   >
                     Enlace de la receta
                   </a>

@@ -10,8 +10,6 @@ const RodaPe = () => {
         <div className="endereco">
           <h3>Recetas de Rosemberg</h3>
           <p>&copy; 2024 Todos los derechos reservados</p>
-          <span>Dirección: Calle de las Recetas, 123 - Ciudad de México. </span>
-          <span>Correo electrónico: contacto@recetasdeliciosas.com</span>
         </div>
         <div className="social-links">
           <a href="#" aria-label="Facebook">

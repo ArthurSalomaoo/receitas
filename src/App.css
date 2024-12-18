@@ -101,10 +101,12 @@ body {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  margin: 10px 25px 0 25px;
 }
 
 .formulario button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3;  
+
 }
 
 .receitaSelecionada {
@@ -188,21 +190,37 @@ body {
 }
 
 .botao-editar {
-  padding: 10px 15px;
-  width: 80px;
-  background-color: #4CAF50;
+  max-width: 100px;
+  padding: 12px 15px;
+  font-size: 1rem;
   color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-}
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #4CAF50;
+  margin: 10px;
+} 
 
 .botao-deletar {
-  padding: 10px 15px;
-  width: 80px;
-  background-color: #f44336;
+  max-width: 100px;
+  padding: 12px 15px;
+  font-size: 1rem;
   color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #f44336;
+  margin: 10px;
+}
+
+.botao-editar:hover{
+  transform: translateY(-5px);
+}
+
+.botao-deletar:hover{
+  transform: translateY(-5px);
 }
 
 .receita-imagem {
