@@ -99,6 +99,7 @@ function BarraDeAcoes({
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
             zIndex: 1000,
           }}
+          className="modalIdioma"
         >
           <h3>Elige el idioma</h3>
           <button
@@ -126,7 +127,7 @@ function BarraDeAcoes({
               border: "none",
               cursor: "pointer",
               margin: "15px 20px 15px 0",
-              borderRadius: "5px", // Bordes redondeados para suavizar el aspecto
+              borderRadius: "5px",
             }}
           >
             Español
